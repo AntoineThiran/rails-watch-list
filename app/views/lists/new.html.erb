@@ -1,4 +1,12 @@
-<%= simple_form_for(@list) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit "Add List", class: "btn btn-primary" %>
-<% end %>
+<div class="forms_banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/random);">
+  <div class="container">
+    <h1>Create a new list</h1>
+  </div>
+</div>
+
+<div class="forms">
+  <%= simple_form_for(@list) do |f| %>
+    <%= f.input :name %>
+    <div class= "link"><%= f.submit "Add List", class: "btn btn-flat" %> | <%= link_to "Go back to home", lists_path, class: "btn btn-flat-two" %> </div>
+  <% end %>
+</div>

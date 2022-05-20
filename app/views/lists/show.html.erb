@@ -1,9 +1,25 @@
-<h2><%= @list.name %></h2>
-<br>
-<div>
-  <ul class="list-inline">
+<div class="forms_banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/random);">
+  <div class="container">
+    <h1>You are in the list : <%= @list.name %></h1>
+  </div>
+</div>
+
+
+<ul class="list-inline">
   <% @list.movies.each do |movie| %>
-    <li><%= movie.title %><%="⭐️" * movie.rating %></li>
+  <% bookmark = Bookmark.find_by(list: @list) %>
+    <div class="card-product">
+      <img src="https://source.unsplash.com/random" />
+      <div class="card-product-infos">
+        <h2><%= movie.title %></h2>
+        <p>Rating : <%="⭐️" * movie.rating %></p>
+        <p><%= link_to "Delete list", bookmark_path(bookmark), method: :delete,
+              data: { confirm: "Are you sure you want to delete this list?" }, class: "btn btn-flat-two" %></p>
+      </div>
+    </div>
   <% end %>
-  </ul>
-  <%= link_to "add a movie to your list", new_list_bookmark_path(@list) %>
+</ul>
+
+<div>
+  <%= link_to "Add a movie to your list", new_list_bookmark_path(@list), class: "btn btn-flat" %> | <%= link_to "Go back to home", lists_path, class: "btn btn-flat-two" %>
+</div>
